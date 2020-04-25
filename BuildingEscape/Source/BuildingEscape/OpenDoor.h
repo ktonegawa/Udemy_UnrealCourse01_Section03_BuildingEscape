@@ -7,6 +7,7 @@
 #include "Engine/TriggerVolume.h"
 #include "OpenDoor.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FDoorEvent);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
@@ -21,25 +22,37 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	void OpenDoor();
-	void CloseDoor();
+	//void OpenDoor();
+	//void CloseDoor();
 
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+	UPROPERTY(BlueprintAssignable)
+	FDoorEvent OnOpen;
+
+	UPROPERTY(BlueprintAssignable)
+	FDoorEvent OnClose;
+
 private:
 	// UPROPERTY(VisibleAnywhere)
-	UPROPERTY(EditAnywhere)
-	float OpenAngle = -90.0f;
+	//UPROPERTY(EditAnywhere)
+	//float OpenAngle = -90.0f;
+	//^ we don't need this anymore now that we have set this up in the custom Openable_Door blueprint
 
 	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate = nullptr;
 
 	UPROPERTY(EditAnywhere)
-	float DoorCloseDelay = 1.f;
+	float TriggerMass = 30.f;
 
-	float LastDoorOpenTime;
+	//UPROPERTY(EditAnywhere)
+	//float DoorCloseDelay = 1.f;
+	//^ we don't need this anymore now that we have set this up in the custom Openable_Door blueprint
+
+	//float LastDoorOpenTime;
+	//^ we don't need this anymore now that we have set this up in the custom Openable_Door blueprint
 
 	// Dont need this anymore so commenting it out
 	// AActor* ActorThatOpens; //Remember that pawn inherits from actor
