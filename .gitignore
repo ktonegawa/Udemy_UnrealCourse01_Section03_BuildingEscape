@@ -8,7 +8,6 @@
 
 # Visual Studio Generated Files
 *.VC.db
-BuildingEscape/Content/StarterContent/
 *.ipch
 *.db-wal
 *.db-shm
